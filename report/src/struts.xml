@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"struts-2.3.dtd">
+<struts>
+	<include file="struts-default.xml"></include>
+
+	<package namespace="/" extends="struts-default" name="struts2">
+		<!-- <global-results> <result name="error">/error.jsp</result> </global-results> 
+			<global-exception-mappings> <exception-mapping exception="java.lang.Exception" 
+			result="error" /> </global-exception-mappings> -->
+		<action name="FindJobByName" class="rt.action.QuzrtzAction"
+			method="FindJobByName">
+			<result name="success" type="dispatcher">/trigger.jsp</result>
+		</action>
+		<action name="query" class="rt.action.QuzrtzAction" method="InitJobs">
+			<result name="success" type="dispatcher">/index.jsp</result>
+		</action>
+		<action name="getTriggerRule" class="rt.action.QuzrtzAction"
+			method="getTriggerRule" />
+		<action name="CreateJob" class="rt.action.QuzrtzAction" method="CreateJob">
+			<result name="success" type="redirect">query.action</result>
+			<result name="input">/scheduler.jsp</result>
+		</action>
+		<action name="updateCronExpression" class="rt.action.QuzrtzAction"
+			method="updateCronExpression">
+			<result name="success" type="dispatcher">/trigger.jsp</result>
+		</action>
+		<action name="doPauseJob" class="rt.action.QuzrtzAction"
+			method="doPauseJob">
+			<result name="success" type="redirect">query.action</result>
+		</action>
+		<action name="resumeJobNow" class="rt.action.QuzrtzAction"
+			method="resumeJobNow">
+			<result name="success" type="redirect">query.action</result>
+		</action>
+		<action name="deleteJob" class="rt.action.QuzrtzAction" method="deleteJob">
+			<result name="success" type="redirect">query.action</result>
+		</action>
+		<action name="runJobNow" class="rt.action.QuzrtzAction" method="runJobNow">
+			<result name="success" type="redirect">query.action</result>
+		</action>
+		<action name="interruptJob" class="rt.action.QuzrtzAction"
+			method="interruptJob">
+			<result name="success" type="redirect">query.action</result>
+		</action>
+
+	</package>
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+</struts>
